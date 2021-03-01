@@ -88,18 +88,16 @@ class _MyAppState extends State<MyApp> {
   }
 
   void startServiceInBackground({int minimumLatency,int deadline}) async {
-    if(Platform.isAndroid){
-      var methodChannel = MethodChannel('com.amirsheibani.service_background');
-      var arguments = {};
-      if(minimumLatency != null){
-        arguments['minimumLatency'] = '$minimumLatency';
-      }
-      if(deadline != null){
-        arguments['deadline'] = '$deadline';
-      }
-      String data = await methodChannel.invokeMethod('startBackgroundService',arguments);
-      debugPrint(data);
+    var methodChannel = MethodChannel('com.amirsheibani.service_background');
+    var arguments = {};
+    if(minimumLatency != null){
+      arguments['minimumLatency'] = '$minimumLatency';
     }
+    if(deadline != null){
+      arguments['deadline'] = '$deadline';
+    }
+    String data = await methodChannel.invokeMethod('startBackgroundService',arguments);
+    debugPrint(data);
   }
 
 }
